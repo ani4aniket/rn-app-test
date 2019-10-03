@@ -1,26 +1,38 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import logo from "./logo.svg";
+import "./App.css";
 
-function App() {
+const generateElement = (key, value) => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div key={key} className="row">
+      <div className="col-xs-6 ins-label">{key}</div>
+      <div className="col-xs-6">{value}</div>
     </div>
   );
+};
+
+function generateData(data) {
+  const newData = Object.keys(data).reduce((result, currentKey) => {
+    if (
+      typeof data[currentKey] === "string" ||
+      data[currentKey] instanceof String
+    ) {
+      const elementToPush = generateElement(currentKey, data[currentKey]);
+      result.push(elementToPush);
+    } else {
+      const nested = generateData(data[currentKey]);
+      result.push(...nested);
+    }
+    return result;
+  }, []);
+  return newData;
+}
+
+class App extends React.Component {
+  render() {
+    const { data } = this.props;
+    return <div>{generateData(data)}</div>;
+  }
 }
 
 export default App;
