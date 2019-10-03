@@ -1,13 +1,12 @@
 {
-  "key1": "value1",
-  "key2": "value2",
-  "key3": "value3",
-  "key4": {
-    "k1": "val1",
-    "k2": {
-      "p1": "v1",
-      "p2": "v2",
-      "p3": "v3"
-    }
-  }
+  "name": "question_text",
+  "description": "the fully pre-rendered text of the entry's original question",
+  "args": [],
+  "type": {
+    "kind": "SCALAR",
+    "name": "String",
+    "ofType": "null"
+  },
+  "isDeprecated": false,
+  "deprecationReason": "null"
 }
